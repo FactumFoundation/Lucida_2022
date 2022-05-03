@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Aux. folders
+**trunk/BasicGUI/Debug/
+**trunk/Debug/
+**trunk/Framework/Debug/
+**trunk/.vs/
