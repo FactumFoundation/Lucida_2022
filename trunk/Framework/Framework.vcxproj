@@ -98,9 +98,15 @@
     </Link>
     <Lib>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../libraries/wxWidgets-3.1.6/lib/vc_lib/</AdditionalLibraryDirectories>
+      <AdditionalDependencies>wxbase31ud.lib</AdditionalDependencies>
     </Lib>
+    <PostBuildEvent>
+      <Command>XCOPY "..\libraries\wxWidgets-3.1.6\lib\vc_lib\*.pdb" "$(OutDir)" /S /Y</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copying PDB files to output folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
