@@ -19,6 +19,7 @@
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
 
+#include "AuxUtils.h"
 
 // for all others, include the necessary headers (this file is usually all you
 // need because it includes almost all "standard" wxWidgets headers)
@@ -35,6 +36,7 @@
 #ifndef wxHAS_IMAGES_IN_RESOURCES
 #include "../sample.xpm"
 #endif
+
 
 // ----------------------------------------------------------------------------
 // private classes
@@ -200,4 +202,15 @@ void MyFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
         "About wxWidgets minimal sample",
         wxOK | wxICON_INFORMATION,
         this);
+
+    // Testing the framework...
+    LaserScanner::Average myAverage;
+    myAverage.addValue(9.0);
+    myAverage.addValue(9.0);
+    myAverage.addValue(9.0);
+    myAverage.addValue(9.0);
+    float av = myAverage.getValue();
+
+    wxMessageBox(wxString::Format("The average value is %f",av),"About wxWidgets minimal sample",wxOK | wxICON_INFORMATION,this);
+
 }
