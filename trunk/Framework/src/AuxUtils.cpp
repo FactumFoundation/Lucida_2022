@@ -1,3 +1,5 @@
+#include "Framework-Precompiled.h"
+
 #include "AuxUtils.h"
 
 namespace LaserScanner

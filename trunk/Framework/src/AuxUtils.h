@@ -1,6 +1,9 @@
 #ifndef _AUX_UTILS
 #define _AUX_UTILS
 
+// Precompiled headers
+#include "Framework-Precompiled.h"
+
 #include <string>
 #include <numeric>
 #include <vector>
@@ -57,4 +60,4 @@ namespace LaserScanner
 	};
 }
 
-#endif
+#endif // _AUX_UTILS
