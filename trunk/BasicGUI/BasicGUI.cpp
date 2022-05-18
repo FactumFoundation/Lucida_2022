@@ -8,6 +8,8 @@
 
 #include "AuxUtils.h"
 
+#include <opencv2/opencv.hpp>
+
 class MyApp : public wxApp
 {
 public:
@@ -39,6 +41,8 @@ bool MyApp::OnInit()
     frame->Show(true);
     return true;
 }
+
+cv::Mat image;
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
@@ -63,9 +67,23 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     myAverage.addValue(9.0);
     myAverage.addValue(9.0);
     float av = myAverage.getValue();
+
+    // Testing OpenCV
+    image = cv::imread("C:\\dev\\shaded.jpg");
+
+    if (image.empty())
+    {
+        wxMessageBox("No image found","About Hello World", wxOK | wxICON_INFORMATION);
+        Close(true);
+    }
+
+    cv::namedWindow("test"); // Create a window
+    imshow("test", image); // Show our image inside the created window.
 }
 void MyFrame::OnExit(wxCommandEvent& event)
 {
+    cv::destroyAllWindows();
+    image.release();
     Close(true);
 }
 void MyFrame::OnAbout(wxCommandEvent& event)
