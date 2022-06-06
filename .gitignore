@@ -32,8 +32,9 @@
 *.app
 
 # Aux. folders
-**trunk/BasicGUI/x64/
-**trunk/Framework/x64/
-**trunk/.vs/
-**trunk/x64/
-**trunk/temp/
+.vs/
+**/BasicGUI/x64/
+**/Framework/x64/
+
+**/x64/
+**/temp/
