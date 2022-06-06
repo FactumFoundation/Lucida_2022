@@ -2,12 +2,11 @@
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
 
-#ifndef WX_PRECOMP
+//#ifndef WX_PRECOMP
 #include <wx/wx.h>
-#endif
+//#endif
 
 #include "AuxUtils.h"
-
 #include <opencv2/opencv.hpp>
 
 class MyApp : public wxApp
@@ -42,7 +41,14 @@ bool MyApp::OnInit()
     return true;
 }
 
-cv::Mat image;
+cv::Mat ocv_image;
+wxImage	wxw_image;
+unsigned char* rawData;
+
+#include "wx/preferences.h"
+
+#include "wx/app.h"
+#include "wx/config.h"
 MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
@@ -69,21 +75,27 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     float av = myAverage.getValue();
 
     // Testing OpenCV
-    image = cv::imread("C:\\dev\\shaded.jpg");
+    //ocv_image = cv::imread("C:\\dev\\shaded.jpg");
+    //const MySettings& settings = wxGetApp().GetSettings();
+    std::string fileName = wxGetApp().GetSettings().DataPath;
 
-    if (image.empty())
+
+    // Creating WxWidget image
+    wxw_image = wxImage(640, 480, rawData, TRUE);
+
+    if (ocv_image.empty())
     {
         wxMessageBox("No image found","About Hello World", wxOK | wxICON_INFORMATION);
         Close(true);
     }
 
     cv::namedWindow("test"); // Create a window
-    imshow("test", image); // Show our image inside the created window.
+    imshow("test", ocv_image); // Show our image inside the created window.
 }
 void MyFrame::OnExit(wxCommandEvent& event)
 {
     cv::destroyAllWindows();
-    image.release();
+    ocv_image.release();
     Close(true);
 }
 void MyFrame::OnAbout(wxCommandEvent& event)
