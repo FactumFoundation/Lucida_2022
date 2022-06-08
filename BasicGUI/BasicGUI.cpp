@@ -75,9 +75,9 @@ MyFrame::MyFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
     float av = myAverage.getValue();
 
     // Testing OpenCV
-    //ocv_image = cv::imread("C:\\dev\\shaded.jpg");
+    ocv_image = cv::imread("C:\\dev\\shaded.jpg");
     //const MySettings& settings = wxGetApp().GetSettings();
-    std::string fileName = wxGetApp().GetSettings().DataPath;
+    //std::string fileName = wxGetApp().GetSettings().DataPath;
 
 
     // Creating WxWidget image
